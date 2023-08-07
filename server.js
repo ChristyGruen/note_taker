@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 // const { clog } = require('./middleware/clog');  //not sure what this is for
-const api = require('./Develop/routes/index.js');
+const api = require('./routes/index.js');
 
 const PORT = process.env.PORT || 3001;
 
@@ -20,17 +20,17 @@ app.use(express.static('public'));
 
 // GET Route for homepage
 app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/assets/index.html'))
+  res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
 // GET Route for feedback page
 app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/assets/notes.html'))
+  res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
 // Wildcard route to direct users to a 404 page
 app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, 'public/assets/404.html'))
+  res.sendFile(path.join(__dirname, 'public/404.html'))
 );
 
 app.listen(PORT, () =>

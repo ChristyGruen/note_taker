@@ -1,4 +1,4 @@
-const porcupine = require('express').Router();
+const notes = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
 const {
   readFromFile,
@@ -7,12 +7,12 @@ const {
 } = require('../helpers/fsUtils');
 
 //GET Route for retrieving all the notes
-porcupine.get('/', (req, res) => {
+notes.get('/', (req, res) => {
   readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
 //GET Route for retrieving a specific note
-porcupine.get('/:note_id', (req, res) => {
+notes.get('/:note_id', (req, res) => {
   const noteId = req.params.note_id;
   readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
@@ -25,7 +25,7 @@ porcupine.get('/:note_id', (req, res) => {
 });
 
 // DELETE Route for a specific tip
-porcupine.delete('/:note_id', (req, res) => {
+notes.delete('/:note_id', (req, res) => {
   const noteId = req.params.note_id;
   readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
@@ -42,7 +42,7 @@ porcupine.delete('/:note_id', (req, res) => {
 });
 
 // POST Route for a new UX/UI tip
-porcupine.post('/', (req, res) => {
+notes.post('/', (req, res) => {
   console.log(req.body);
 
   const {title, text, note_id} = req.body;
@@ -60,6 +60,7 @@ porcupine.post('/', (req, res) => {
     res.error('Error in adding note');
   }
 });
+
 
 module.exports = notes;
 
