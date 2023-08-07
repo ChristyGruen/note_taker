@@ -1,4 +1,4 @@
-const porcupine = require('express').Router();
+const notes = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
 const {
   readFromFile,
@@ -7,17 +7,18 @@ const {
 } = require('../helpers/fsUtils');
 
 //GET Route for retrieving all the notes
-porcupine.get('/', (req, res) => {
-  readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+notes.get('/', (req, res) => {
+  readFromFile('./db/db.json').then((data) => 
+  res.json(JSON.parse(data)));
 });
 
 //GET Route for retrieving a specific note
-porcupine.get('/:note_id', (req, res) => {
-  const noteId = req.params.note_id;
+notes.get('/:id', (req, res) => {
+  const noteId = req.params.id;
   readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
-      const result = json.filter((koala) => koala.note_id === noteId);
+      const result = json.filter((koala) => koala.id === noteId);
       return result.length > 0
         ? res.json(result)
         : res.json('Note ID not found');
@@ -25,13 +26,13 @@ porcupine.get('/:note_id', (req, res) => {
 });
 
 // DELETE Route for a specific tip
-porcupine.delete('/:note_id', (req, res) => {
-  const noteId = req.params.note_id;
+notes.delete('/:id', (req, res) => {
+  const noteId = req.params.id;
   readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
       // Make a new array of all notes except the one with the title provided in the URL
-      const result = json.filter((koala) => koala.note_id !== noteId);
+      const result = json.filter((koala) => koala.id !== noteId);
 
       // Save that array to the filesystem
       writeToFile('./db/db.json', result);
@@ -42,16 +43,16 @@ porcupine.delete('/:note_id', (req, res) => {
 });
 
 // POST Route for a new UX/UI tip
-porcupine.post('/', (req, res) => {
+notes.post('/', (req, res) => {
   console.log(req.body);
 
-  const {title, text, note_id} = req.body;
+  const {title, text, id} = req.body;
 
   if (req.body) {
     const newNote = {
       title,
       text,
-      note_id: uuidv4(),
+      id: uuidv4(),
     };
 
     readAndAppend(newNote, './db/db.json');
@@ -60,6 +61,8 @@ porcupine.post('/', (req, res) => {
     res.error('Error in adding note');
   }
 });
+
+
 
 module.exports = notes;
 

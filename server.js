@@ -1,7 +1,7 @@
-//28miniproject copy
+//updated from 28miniproject copy
 const express = require('express');
 const path = require('path');
-const { clog } = require('./middleware/clog');  //not sure what this is for
+// const { clog } = require('./middleware/clog');  //not sure what this is for
 const api = require('./routes/index.js');
 
 const PORT = process.env.PORT || 3001;
@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // Import custom middleware, "cLog"
-app.use(clog);  //not sure if I need this
+// app.use(clog);  //not sure if I need this
 
 // Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
@@ -20,17 +20,17 @@ app.use(express.static('public'));
 
 // GET Route for homepage
 app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/assets/index.html'))
+  res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
 // GET Route for feedback page
 app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/assets/notes.html'))
+  res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
 // Wildcard route to direct users to a 404 page
 app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, 'public/assets/404.html'))
+  res.sendFile(path.join(__dirname, '/public/404.html'))
 );
 
 app.listen(PORT, () =>
