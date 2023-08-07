@@ -1,4 +1,4 @@
-//28miniproject copy
+//updated from 28miniproject copy
 const express = require('express');
 const path = require('path');
 // const { clog } = require('./middleware/clog');  //not sure what this is for
@@ -30,7 +30,7 @@ app.get('/notes', (req, res) =>
 
 // Wildcard route to direct users to a 404 page
 app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, 'public/404.html'))
+  res.sendFile(path.join(__dirname, '/public/404.html'))
 );
 
 app.listen(PORT, () =>
