@@ -9,7 +9,6 @@
 
   ## Table of Contents
   [Installation Instructions](#installation-instructions)<br>
-  [Usage](#usage)<br>
   [License](#license)<br>
   [Contributors](#contributors)<br>
   [Tests](#tests)<br>
@@ -17,15 +16,12 @@
   [References](#references)<br>
 
   
-  ## Installation Instructions
+  ## Installation Instructions 
   
-      To install the required packages to run this app, navigate to the root directory of the project and open an integrated terminal.  Type <strong> npm i -y</strong> in the terminal and enter.  This will install the packages listed in the package manager, including inquirer v8.2.4.
-  
-  ## Usage
-  
-      To run the app, type node server.js in the terminal and enter. Answer the questions posed in the terminal.  Once all the questions are answered, an SVG file will be generated in the root directory of the project.
+      To run your own installation of the app:  
+      Install the required packages to run this app, by navigating to the root directory of the project and opening an integrated terminal.  Type <strong> npm i -y</strong> in the terminal and enter.  This will install the packages listed in the package manager, including inquirer v8.2.4.
+      Run the app by typing node server.js in the terminal and pressing enter. Go to the browser and type "http://localhost:3001/" in the address bar.  The app should be available in the browser, hosted from your local server.
 
-  
   ## License
     This project is covered under the MIT license.
 
